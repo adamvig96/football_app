@@ -152,11 +152,6 @@ away_players = players
 players = pd.concat([home_players, away_players]).reset_index().drop("index", axis=1)
 
 
-# In[12]:
-
-
-players.to_pickle("player_df.pkl")
-
 
 # In[13]:
 
@@ -203,18 +198,9 @@ test_df = test_df.merge(CC_df, how="left", left_on="playerName", right_index=Tru
 test_df=test_df.merge(coordinates)
 
 
-# In[16]:
-
-
-test_df.to_pickle("test_df.pkl")
 
 
 # # háló
-
-# In[17]:
-
-
-test_df = pd.read_pickle('test_df.pkl')
 
 
 # ### csapat logók
@@ -337,17 +323,17 @@ team_id_dic = {
 # In[23]:
 
 
-team_1 = test_df.loc[test_df["teamId"] == list(team_id_dic.keys())[0]]
+#team_1 = test_df.loc[test_df["teamId"] == list(team_id_dic.keys())[0]]
 
-pass_net(team_1,height="380px",name="team1")
+#pass_net(team_1,height="380px",name="team1")
 
 
 # In[24]:
 
 
-team_2 = test_df.loc[test_df["teamId"] == list(team_id_dic.keys())[1]]
+#team_2 = test_df.loc[test_df["teamId"] == list(team_id_dic.keys())[1]]
 
-pass_net(team_2,height="380px",name="team2")
+#pass_net(team_2,height="380px",name="team2")
 
 
 # In[ ]:
