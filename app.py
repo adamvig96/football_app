@@ -16,7 +16,7 @@ from pyvis.network import Network
 # In[6]:
 
 
-match_url = "https://borza-hotelcom-data.s3.eu-central-1.amazonaws.com/whoscored-match-1376867.json"
+match_url = "https://borza-hotelcom-data.s3.eu-central-1.amazonaws.com/whoscored-match-1376105.json"
 
 
 # In[7]:
@@ -189,6 +189,11 @@ for i in list(cc.keys()):
 CC_df = pd.DataFrame.from_dict(cc, orient="index", columns=["closeness centrality"])
 
 players = players.merge(CC_df, how="left", left_on="playerName", right_index=True)
+players = (
+    pd.merge(players, test_df[["playerId", "color"]], how="left")
+    .drop_duplicates()
+    .reset_index(drop=True)
+)
 test_df = test_df.merge(CC_df, how="left", left_on="playerName", right_index=True)
 
 
@@ -383,7 +388,7 @@ app.layout = html.Div(
         ),
         html.Div(
             children=[
-                html.H3(children="Sevilla", className="six columns"),
+                html.H3(children="blablabla", className="six columns"),
                 html.Div(
                     html.Iframe(
                         srcDoc=open("pass_network_team1.html").read(),
