@@ -388,7 +388,15 @@ app.layout = html.Div(
         ),
         html.Div(
             children=[
-                html.H3(children="blablabla", className="six columns"),
+                html.Div(
+                    children=[
+                        H3(children="mi ez a cucc?"),
+                        html.Element(
+                            children="babababababababababbabaaabababababababababab",
+                        ),
+                    ],
+                    className="six columns",
+                ),
                 html.Div(
                     html.Iframe(
                         srcDoc=open("pass_network_team1.html").read(),
