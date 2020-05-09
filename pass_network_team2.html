@@ -1,0 +1,77 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 100%;
+            height: 380px;
+            background-color: FFFFFF;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "red", "font": {"color": "black"}, "id": "Mesut \u00d6zil", "label": "Mesut \u00d6zil", "shape": "dot", "size": 1.52, "title": "Mesut \u00d6zil\u003cbr\u003eshirt number: 10\u003cbr\u003eposition: AMC\u003cbr\u003eheight: 180\u003cbr\u003eweight: 76\u003cbr\u003eage: 31\u003cbr\u003erating: 6.11\u003cbr\u003ecloseness centrality: 0.76", "value": 10}, {"color": "red", "font": {"color": "black"}, "id": "David Luiz", "label": "David Luiz", "shape": "dot", "size": 1.52, "title": "David Luiz\u003cbr\u003eshirt number: 23\u003cbr\u003eposition: DC\u003cbr\u003eheight: 189\u003cbr\u003eweight: 84\u003cbr\u003eage: 32\u003cbr\u003erating: 4.89\u003cbr\u003ecloseness centrality: 0.65", "value": 3}, {"color": "red", "font": {"color": "black"}, "id": "Alexandre Lacazette", "label": "Alexandre Lacazette", "shape": "dot", "size": 1.52, "title": "Alexandre Lacazette\u003cbr\u003eshirt number: 9\u003cbr\u003eposition: FW\u003cbr\u003eheight: 175\u003cbr\u003eweight: 73\u003cbr\u003eage: 28\u003cbr\u003erating: 6.72\u003cbr\u003ecloseness centrality: 0.72", "value": 10}, {"color": "red", "font": {"color": "black"}, "id": "Shkodran Mustafi", "label": "Shkodran Mustafi", "shape": "dot", "size": 1.52, "title": "Shkodran Mustafi\u003cbr\u003eshirt number: 20\u003cbr\u003eposition: DC\u003cbr\u003eheight: 184\u003cbr\u003eweight: 82\u003cbr\u003eage: 28\u003cbr\u003erating: 7.14\u003cbr\u003ecloseness centrality: 0.72", "value": 8}, {"color": "red", "font": {"color": "black"}, "id": "Granit Xhaka", "label": "Granit Xhaka", "shape": "dot", "size": 1.52, "title": "Granit Xhaka\u003cbr\u003eshirt number: 34\u003cbr\u003eposition: DMC\u003cbr\u003eheight: 185\u003cbr\u003eweight: 82\u003cbr\u003eage: 27\u003cbr\u003erating: 6.87\u003cbr\u003ecloseness centrality: 0.72", "value": 11}, {"color": "red", "font": {"color": "black"}, "id": "Bernd Leno", "label": "Bernd Leno", "shape": "dot", "size": 1.52, "title": "Bernd Leno\u003cbr\u003eshirt number: 1\u003cbr\u003eposition: GK\u003cbr\u003eheight: 190\u003cbr\u003eweight: 83\u003cbr\u003eage: 28\u003cbr\u003erating: 6.95\u003cbr\u003ecloseness centrality: 0.65", "value": 7}, {"color": "red", "font": {"color": "black"}, "id": "H\u00e9ctor Beller\u00edn", "label": "H\u00e9ctor Beller\u00edn", "shape": "dot", "size": 1.52, "title": "H\u00e9ctor Beller\u00edn\u003cbr\u003eshirt number: 2\u003cbr\u003eposition: DR\u003cbr\u003eheight: 178\u003cbr\u003eweight: 74\u003cbr\u003eage: 25\u003cbr\u003erating: 7.63\u003cbr\u003ecloseness centrality: 0.76", "value": 10}, {"color": "red", "font": {"color": "black"}, "id": "Nicolas P\u00e9p\u00e9", "label": "Nicolas P\u00e9p\u00e9", "shape": "dot", "size": 1.52, "title": "Nicolas P\u00e9p\u00e9\u003cbr\u003eshirt number: 19\u003cbr\u003eposition: AMR\u003cbr\u003eheight: 183\u003cbr\u003eweight: 73\u003cbr\u003eage: 24\u003cbr\u003erating: 6.39\u003cbr\u003ecloseness centrality: 0.72", "value": 4}, {"color": "red", "font": {"color": "black"}, "id": "Lucas Torreira", "label": "Lucas Torreira", "shape": "dot", "size": 1.52, "title": "Lucas Torreira\u003cbr\u003eshirt number: 11\u003cbr\u003eposition: DMC\u003cbr\u003eheight: 168\u003cbr\u003eweight: 64\u003cbr\u003eage: 24\u003cbr\u003erating: 6.69\u003cbr\u003ecloseness centrality: 0.81", "value": 10}, {"color": "red", "font": {"color": "black"}, "id": "Bukayo Saka", "label": "Bukayo Saka", "shape": "dot", "size": 1.52, "title": "Bukayo Saka\u003cbr\u003eshirt number: 77\u003cbr\u003eposition: DL\u003cbr\u003eheight: 178\u003cbr\u003eweight: 65\u003cbr\u003eage: 18\u003cbr\u003erating: 6.91\u003cbr\u003ecloseness centrality: 0.76", "value": 9}, {"color": "red", "font": {"color": "black"}, "id": "Gabriel Martinelli", "label": "Gabriel Martinelli", "shape": "dot", "size": 1.52, "title": "Gabriel Martinelli\u003cbr\u003eshirt number: 35\u003cbr\u003eposition: AML\u003cbr\u003eheight: 180\u003cbr\u003eweight: 75\u003cbr\u003eage: 18\u003cbr\u003erating: 7.37\u003cbr\u003ecloseness centrality: 0.62", "value": 4}, {"color": "red", "font": {"color": "black"}, "id": "Matteo Guendouzi", "label": "Matteo Guendouzi", "shape": "dot", "size": 1.44, "title": "Matteo Guendouzi\u003cbr\u003eshirt number: 29\u003cbr\u003eposition: Sub\u003cbr\u003eheight: 185\u003cbr\u003eweight: 64\u003cbr\u003eage: 21\u003cbr\u003erating: 6.33\u003cbr\u003ecloseness centrality: 0.54", "value": 5}, {"color": "red", "font": {"color": "black"}, "id": "Joseph Willock", "label": "Joseph Willock", "shape": "dot", "size": 1.44, "title": "Joseph Willock\u003cbr\u003eshirt number: 28\u003cbr\u003eposition: Sub\u003cbr\u003eheight: 179\u003cbr\u003eweight: 71\u003cbr\u003eage: 20\u003cbr\u003erating: 5.97\u003cbr\u003ecloseness centrality: 0.45", "value": 2}, {"color": "red", "font": {"color": "black"}, "id": "Rob Holding", "label": "Rob Holding", "shape": "dot", "size": 1.52, "title": "Rob Holding\u003cbr\u003eshirt number: 16\u003cbr\u003eposition: Sub\u003cbr\u003eheight: 189\u003cbr\u003eweight: 75\u003cbr\u003eage: 24\u003cbr\u003erating: 6.24\u003cbr\u003ecloseness centrality: 0.46", "value": 1}]);
+        edges = new vis.DataSet([{"arrows": "to", "from": "Mesut \u00d6zil", "to": "David Luiz", "value": 1}, {"arrows": "to", "from": "Mesut \u00d6zil", "to": "Alexandre Lacazette", "value": 1}, {"arrows": "to", "from": "Mesut \u00d6zil", "to": "Shkodran Mustafi", "value": 3}, {"arrows": "to", "from": "Mesut \u00d6zil", "to": "Granit Xhaka", "value": 5}, {"arrows": "to", "from": "Mesut \u00d6zil", "to": "Bernd Leno", "value": 1}, {"arrows": "to", "from": "Mesut \u00d6zil", "to": "H\u00e9ctor Beller\u00edn", "value": 5}, {"arrows": "to", "from": "Mesut \u00d6zil", "to": "Nicolas P\u00e9p\u00e9", "value": 3}, {"arrows": "to", "from": "Mesut \u00d6zil", "to": "Lucas Torreira", "value": 3}, {"arrows": "to", "from": "Mesut \u00d6zil", "to": "Bukayo Saka", "value": 3}, {"arrows": "to", "from": "Mesut \u00d6zil", "to": "Gabriel Martinelli", "value": 3}, {"arrows": "to", "from": "David Luiz", "to": "Shkodran Mustafi", "value": 7}, {"arrows": "to", "from": "David Luiz", "to": "Lucas Torreira", "value": 1}, {"arrows": "to", "from": "David Luiz", "to": "Bukayo Saka", "value": 2}, {"arrows": "to", "from": "Alexandre Lacazette", "to": "Mesut \u00d6zil", "value": 2}, {"arrows": "to", "from": "Alexandre Lacazette", "to": "David Luiz", "value": 1}, {"arrows": "to", "from": "Alexandre Lacazette", "to": "Granit Xhaka", "value": 2}, {"arrows": "to", "from": "Alexandre Lacazette", "to": "H\u00e9ctor Beller\u00edn", "value": 1}, {"arrows": "to", "from": "Alexandre Lacazette", "to": "Nicolas P\u00e9p\u00e9", "value": 6}, {"arrows": "to", "from": "Alexandre Lacazette", "to": "Lucas Torreira", "value": 1}, {"arrows": "to", "from": "Alexandre Lacazette", "to": "Matteo Guendouzi", "value": 3}, {"arrows": "to", "from": "Alexandre Lacazette", "to": "Joseph Willock", "value": 1}, {"arrows": "to", "from": "Alexandre Lacazette", "to": "Bukayo Saka", "value": 3}, {"arrows": "to", "from": "Alexandre Lacazette", "to": "Gabriel Martinelli", "value": 2}, {"arrows": "to", "from": "Shkodran Mustafi", "to": "Mesut \u00d6zil", "value": 3}, {"arrows": "to", "from": "Shkodran Mustafi", "to": "David Luiz", "value": 3}, {"arrows": "to", "from": "Shkodran Mustafi", "to": "Alexandre Lacazette", "value": 4}, {"arrows": "to", "from": "Shkodran Mustafi", "to": "Granit Xhaka", "value": 9}, {"arrows": "to", "from": "Shkodran Mustafi", "to": "Bernd Leno", "value": 5}, {"arrows": "to", "from": "Shkodran Mustafi", "to": "H\u00e9ctor Beller\u00edn", "value": 12}, {"arrows": "to", "from": "Shkodran Mustafi", "to": "Nicolas P\u00e9p\u00e9", "value": 2}, {"arrows": "to", "from": "Shkodran Mustafi", "to": "Lucas Torreira", "value": 3}, {"arrows": "to", "from": "Granit Xhaka", "to": "Mesut \u00d6zil", "value": 7}, {"arrows": "to", "from": "Granit Xhaka", "to": "David Luiz", "value": 3}, {"arrows": "to", "from": "Granit Xhaka", "to": "Alexandre Lacazette", "value": 1}, {"arrows": "to", "from": "Granit Xhaka", "to": "Shkodran Mustafi", "value": 8}, {"arrows": "to", "from": "Granit Xhaka", "to": "Bernd Leno", "value": 3}, {"arrows": "to", "from": "Granit Xhaka", "to": "H\u00e9ctor Beller\u00edn", "value": 1}, {"arrows": "to", "from": "Granit Xhaka", "to": "Nicolas P\u00e9p\u00e9", "value": 1}, {"arrows": "to", "from": "Granit Xhaka", "to": "Lucas Torreira", "value": 8}, {"arrows": "to", "from": "Granit Xhaka", "to": "Matteo Guendouzi", "value": 1}, {"arrows": "to", "from": "Granit Xhaka", "to": "Bukayo Saka", "value": 8}, {"arrows": "to", "from": "Granit Xhaka", "to": "Gabriel Martinelli", "value": 1}, {"arrows": "to", "from": "Bernd Leno", "to": "Mesut \u00d6zil", "value": 1}, {"arrows": "to", "from": "Bernd Leno", "to": "David Luiz", "value": 1}, {"arrows": "to", "from": "Bernd Leno", "to": "Shkodran Mustafi", "value": 5}, {"arrows": "to", "from": "Bernd Leno", "to": "Granit Xhaka", "value": 6}, {"arrows": "to", "from": "Bernd Leno", "to": "H\u00e9ctor Beller\u00edn", "value": 1}, {"arrows": "to", "from": "Bernd Leno", "to": "Nicolas P\u00e9p\u00e9", "value": 1}, {"arrows": "to", "from": "Bernd Leno", "to": "Bukayo Saka", "value": 2}, {"arrows": "to", "from": "H\u00e9ctor Beller\u00edn", "to": "Mesut \u00d6zil", "value": 5}, {"arrows": "to", "from": "H\u00e9ctor Beller\u00edn", "to": "Alexandre Lacazette", "value": 8}, {"arrows": "to", "from": "H\u00e9ctor Beller\u00edn", "to": "Shkodran Mustafi", "value": 11}, {"arrows": "to", "from": "H\u00e9ctor Beller\u00edn", "to": "Granit Xhaka", "value": 1}, {"arrows": "to", "from": "H\u00e9ctor Beller\u00edn", "to": "Bernd Leno", "value": 2}, {"arrows": "to", "from": "H\u00e9ctor Beller\u00edn", "to": "Nicolas P\u00e9p\u00e9", "value": 10}, {"arrows": "to", "from": "H\u00e9ctor Beller\u00edn", "to": "Lucas Torreira", "value": 3}, {"arrows": "to", "from": "H\u00e9ctor Beller\u00edn", "to": "Rob Holding", "value": 1}, {"arrows": "to", "from": "H\u00e9ctor Beller\u00edn", "to": "Bukayo Saka", "value": 1}, {"arrows": "to", "from": "H\u00e9ctor Beller\u00edn", "to": "Gabriel Martinelli", "value": 1}, {"arrows": "to", "from": "Nicolas P\u00e9p\u00e9", "to": "Mesut \u00d6zil", "value": 3}, {"arrows": "to", "from": "Nicolas P\u00e9p\u00e9", "to": "Alexandre Lacazette", "value": 2}, {"arrows": "to", "from": "Nicolas P\u00e9p\u00e9", "to": "H\u00e9ctor Beller\u00edn", "value": 7}, {"arrows": "to", "from": "Nicolas P\u00e9p\u00e9", "to": "Lucas Torreira", "value": 2}, {"arrows": "to", "from": "Lucas Torreira", "to": "Mesut \u00d6zil", "value": 3}, {"arrows": "to", "from": "Lucas Torreira", "to": "David Luiz", "value": 2}, {"arrows": "to", "from": "Lucas Torreira", "to": "Alexandre Lacazette", "value": 2}, {"arrows": "to", "from": "Lucas Torreira", "to": "Shkodran Mustafi", "value": 8}, {"arrows": "to", "from": "Lucas Torreira", "to": "Granit Xhaka", "value": 4}, {"arrows": "to", "from": "Lucas Torreira", "to": "Bernd Leno", "value": 1}, {"arrows": "to", "from": "Lucas Torreira", "to": "H\u00e9ctor Beller\u00edn", "value": 6}, {"arrows": "to", "from": "Lucas Torreira", "to": "Nicolas P\u00e9p\u00e9", "value": 1}, {"arrows": "to", "from": "Lucas Torreira", "to": "Bukayo Saka", "value": 4}, {"arrows": "to", "from": "Lucas Torreira", "to": "Gabriel Martinelli", "value": 3}, {"arrows": "to", "from": "Rob Holding", "to": "Shkodran Mustafi", "value": 1}, {"arrows": "to", "from": "Matteo Guendouzi", "to": "Granit Xhaka", "value": 2}, {"arrows": "to", "from": "Matteo Guendouzi", "to": "H\u00e9ctor Beller\u00edn", "value": 1}, {"arrows": "to", "from": "Matteo Guendouzi", "to": "Nicolas P\u00e9p\u00e9", "value": 2}, {"arrows": "to", "from": "Matteo Guendouzi", "to": "Lucas Torreira", "value": 1}, {"arrows": "to", "from": "Matteo Guendouzi", "to": "Bukayo Saka", "value": 2}, {"arrows": "to", "from": "Joseph Willock", "to": "Lucas Torreira", "value": 1}, {"arrows": "to", "from": "Joseph Willock", "to": "Bukayo Saka", "value": 1}, {"arrows": "to", "from": "Bukayo Saka", "to": "Mesut \u00d6zil", "value": 5}, {"arrows": "to", "from": "Bukayo Saka", "to": "David Luiz", "value": 5}, {"arrows": "to", "from": "Bukayo Saka", "to": "Alexandre Lacazette", "value": 4}, {"arrows": "to", "from": "Bukayo Saka", "to": "Shkodran Mustafi", "value": 1}, {"arrows": "to", "from": "Bukayo Saka", "to": "Granit Xhaka", "value": 12}, {"arrows": "to", "from": "Bukayo Saka", "to": "Bernd Leno", "value": 2}, {"arrows": "to", "from": "Bukayo Saka", "to": "Lucas Torreira", "value": 4}, {"arrows": "to", "from": "Bukayo Saka", "to": "Matteo Guendouzi", "value": 1}, {"arrows": "to", "from": "Bukayo Saka", "to": "Gabriel Martinelli", "value": 12}, {"arrows": "to", "from": "Gabriel Martinelli", "to": "Mesut \u00d6zil", "value": 1}, {"arrows": "to", "from": "Gabriel Martinelli", "to": "Alexandre Lacazette", "value": 2}, {"arrows": "to", "from": "Gabriel Martinelli", "to": "H\u00e9ctor Beller\u00edn", "value": 1}, {"arrows": "to", "from": "Gabriel Martinelli", "to": "Bukayo Saka", "value": 5}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {"nodes": {"borderWidth": 2, "color": {"highlight": {"background": "rgba(217,255,50,1)"}}, "font": {"size": 50, "face": "tahoma"}}, "edges": {"color": {"inherit": true}, "smooth": false}, "physics": {"barnesHut": {"gravitationalConstant": -80000, "springLength": 250, "springConstant": 0.001}, "minVelocity": 0.75}};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>
