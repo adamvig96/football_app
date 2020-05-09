@@ -378,16 +378,16 @@ fig.update_layout(title_text="Closeness centrality and rating of players")
 
 markdown_text = """
 This is our homework for the Applied Data-driven Algorithm Design course at Rajk College.
-We created a network of passes at a Chelsea-Arsenal Premier League Match. The game was held at the Chelsea home stadium [Stamford Bridge](https://hu.wikipedia.org/wiki/Stamford_Bridge_(stadion)) on January 21, 2020. The final score was 2:2.
+We created a network of passes for a Chelsea-Arsenal Premier League Match. The game was held at the Chelsea home stadium [Stamford Bridge](https://hu.wikipedia.org/wiki/Stamford_Bridge_(stadion)) on January 21, 2020. The final score was 2:2.
 
-Each node represents a player who touched the ball during the game and the edges between them are the successfull passes.
-The edges are directed and weighted by the number of passes between the players.
+In the networks, each node represents a player who touched the ball during the game and the edges between them are the successfull passes.
+The edges are directed and weighted by the number of passes between the players. 
 We created this project because networktools are hardly used for football analytics.
 
 For each player we calculated the closeness centrality, which is the normalized average length of the shortest path between the node and all other nodes in the graph.
 Therefore we could determine how important a player was for the team's passing game.
  Football being a teamsport, we hoped that this value will strongly correlate with the actual rating of a player, which is coming from [WhoScored.com](https://www.whoscored.com/Matches/1376105/Preview/England-Premier-League-2019-2020-Chelsea-Arsenal).
-The left bottom plot shows the correlation between the closeness centrality and the ratings.
+The left bottom plot shows the relationship between the closeness centrality and the ratings.
 """
 
 
